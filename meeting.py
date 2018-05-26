@@ -1,7 +1,46 @@
 # Convert number to a time
 def num2time(number):
+	time = ""
+	if number > 1200:
+		number -= 1200
 
-	return number
+		if number/100 == 0:
+			time += "12"
+		elif number/100 == 12:
+			time += "00"
+		else:
+			time += str(number/100)
+
+		time += ":"
+
+		if number%100 == 0:
+			time += "00"
+		else:
+			time += str(number%100)
+
+		if number/100 == 12:
+			time += "AM"
+		else:
+			time += "PM"
+	else:
+		if number/100 == 0:
+			time += "00"
+		else:
+			time += str(number/100)
+
+		time += ":"
+
+		if number%100 == 0:
+			time += "00"
+		else:
+			time += str(number%100)
+
+		if number/100 == 12:
+			time += "PM"
+		else:
+			time += "AM"
+
+	return time
 
 # Convert time to a number
 def time2num(times):
@@ -12,7 +51,7 @@ def time2num(times):
 
 	for i in [start, stop]:
 
-		if 'PM' in i:
+		if 'PM' in i and '12' not in i:
 			flag = True
 		
 		if 'AM' in i or 'PM' in i:
@@ -63,14 +102,14 @@ for slot in meeting_times:
 	i = meeting_times.index(slot)
 
 	if i == 0 and 0 != meeting_times[0][0]:
-		print "Free: " + "0" + "-" + str(meeting_times[i][0])
+		print "Free: " + num2time(0) + "-" + num2time(meeting_times[i][0])
 	else:
-		print "Free: " + str(meeting_times[i-1][1]) + "-" + str(meeting_times[i][0])
+		print "Free: " + num2time(meeting_times[i-1][1]) + "-" + num2time(meeting_times[i][0])
 	
-	print "Busy: " + str(slot[0]) + "-" + str(slot[1])
+	print "Busy: " + num2time(slot[0]) + "-" + num2time(slot[1])
 
 if 2400 != meeting_times[-1][1]:
-		print "Free: " + str(meeting_times[len(meeting_times)-1][1]) + "-" + "2400"
+		print "Free: " + str(num2time(meeting_times[-1][1])) + "-" + num2time(2400)
 
 
 
