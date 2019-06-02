@@ -1,0 +1,45 @@
+Live Class
+
+Given an array of ints, find int of rank k
+- Write an example, get on the same page as the interviewer
+- Observations: in the array if k <= n, could be anywhere, sorted order (k-1)th 
+- Partitions around (k-1) could be unsorted, but we just need to know: how many in the Left array?
+- Recurse only chasing (k-1) == <= >= n
+- O(N)
+
+How about repeated rank ks?
+- Heap
+- k delete mins
+- k inserts, starting at n-k
+- Advantages: constant space, in-place, for low ks
+
+For random, large ks, maybe store pivots
+
+Find median in guaranteed linear time
+- Heapsort? Quick Select? Yes, but large constant in cN
+
+External sort
+256 Billion, 64-bit integers
+
+2^8*2^30*2^3 bytes
+2^41
+~2TB
+
+16GB Memory
+Scan 1: Sorted 16GB chunks
+
+Scan 2: 
+Few Discblocks per Chunk
+Scripting to find average read/write speeds. Calculate ~number of buffers.
+Read->Merging engine->Write
+
+Scan 3: K-way merge
+
+BuildHeap: O(N)
+
+Coding HW:
+Quick Select
+Merge k sorted list
+Find kth smallest in a heap
+
+Running median

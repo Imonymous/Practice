@@ -109,7 +109,7 @@ for slot in meeting_times:
 	print "Busy: " + num2time(slot[0]) + "-" + num2time(slot[1])
 
 if 2400 != meeting_times[-1][1]:
-		print "Free: " + str(num2time(meeting_times[-1][1])) + "-" + num2time(2400)
+		print "Free: " + num2time(meeting_times[-1][1]) + "-" + num2time(2400)
 
 
 
