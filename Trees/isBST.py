@@ -30,14 +30,14 @@ class BinaryTree():
             nodeValueString = input().split(' ')
             for val in nodeValueString:
                 self.nodeValues.append(int(val))
-        
+
         self.rootIndex = int(input())
         self.noOfEdges = int(input())
         for i in range(self.noOfEdges):
             edgeInput = input().split(' ')
             self.edges.append(self.Edge(int(edgeInput[0]), int(edgeInput[1]), edgeInput[2]))
 
-    def buildFormRawValues(self):
+    def buildFromRawValues(self):
         if self.noOfNodes == 0:
             root =  None
             return
@@ -56,13 +56,13 @@ class BinaryTree():
 def readBinaryTree():
     inputBinaryTree = BinaryTree()
     inputBinaryTree.readRawValues()
-    inputBinaryTree.buildFormRawValues()
+    inputBinaryTree.buildFromRawValues()
     return inputBinaryTree.root
 
 def recursiveCheck(root, min_val, max_val):
     if root == None:
         return True
-    
+
     if root.val < min_val or root.val > max_val:
         return False
 
@@ -74,9 +74,9 @@ def isBST(root):
 # Alternate try
     # if root == None:
     #     return True
-        
+
     # l = isBST(root.left_ptr)
-    
+
     # if root.left_ptr == None and root.right_ptr == None:
     #     return True
     # if root.left_ptr != None and root.right_ptr == None:
@@ -88,7 +88,7 @@ def isBST(root):
     # if root.left_ptr != None and root.right_ptr != None:
     #     if root.left_ptr.val > root.val or root.val > root.right_ptr.val:
     #         return False
-            
+
     # r = isBST(root.right_ptr)
 
     # return l and r
@@ -101,4 +101,5 @@ def main():
     else:
         print(0)
 
-main()
+if __name__ == '__main__':
+    main()

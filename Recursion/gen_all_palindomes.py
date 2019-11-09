@@ -2,14 +2,14 @@
 
 '''
 Consider abracadabra
-Then the possibilities look like 
+Then the possibilities look like
 
 a|b|r|a|c|a|d|a|b|r|a
 a|b|r|aca|d|a|b|r|a
 a|b|r|a|c|ada|b|r|a
 
 
-Contract: 
+Contract:
 
 f(s, start, end)
 returns if s[start:end] is palindromic
@@ -65,7 +65,7 @@ Stitch every possible combo and handle the individual letters at the end
 # 	for start in range(len(s)):
 # 		for end in range(start+1,len(s)+1):
 # 			if check_palindrome(s, start, end):
-				
+
 # 				res = ""
 
 # 				if start > 0:
@@ -105,7 +105,7 @@ Stitch every possible combo and handle the individual letters at the end
 # 					out.append(res)
 # 	return out
 
-# Failed Attempt 3 
+# Failed Attempt 3
 # def recurse1(s, start, end):
 # 	if start >= end:
 # 		return s[end]
@@ -117,7 +117,7 @@ Stitch every possible combo and handle the individual letters at the end
 # 		return s[start]
 
 # 	return recurse2(s, start, end-1)+"|"+s[end]
-	
+
 
 # def generate_all_palindromes(s):
 # 	for i in range(1, len(s)):
@@ -127,37 +127,53 @@ Stitch every possible combo and handle the individual letters at the end
 # 		print(recurse2(s, 0, i) + "|" + s[i+1:len(s)])
 
 # Attempt 4
-def find_all_palindromes(a, subsets):
-	res = []
+# def find_all_palindromes(a, subsets):
+# 	res = []
+#
+# 	if subsets > 0:
+# 		for i in range(subsets):
+# 			end = i+(len(a)-subsets)+1
+# 			if check_palindrome(a,i,end):
+# 				res.append(a[i:end])
+# 		res += find_all_palindromes(a, subsets-1)
+# 	else:
+# 		res.append("")
+#
+# 	return res
 
-	if subsets > 0:
-		for i in range(subsets):
-			end = i+(len(a)-subsets)+1
-			if check_palindrome(a,i,end):
-				res.append(a[i:end])
-		res += find_all_palindromes(a, subsets-1)
-	else:
-		res.append("")
+# def printPermutationsMain(inp):
+# 	return printPermutations(inp, 0)
 
-	return res
+# def printPermutations(array, i):
+#     if i == (len(array) - 1):
+#         print("".join(array))
+#         return
+#     for j in range(i, len(array)):
+#         array[i], array[j] = array[j], array[i]
+#         printPermutations(array, i + 1)
+#         array[i], array[j] = array[j], array[i]
+#
+# def generate_all_palindromes(a):
+# 	# res = find_all_palindromes(a, len(a))
+# 	# print(res)
+# 	printPermutations(list(a), 0)
 
-def printPermutationsMain(inp):
-	return printPermutations(inp, 0)
-
-def printPermutations(array, i):
-    if i == (len(array) - 1):
-        print("".join(array))
+def gap_helper(in_str, pos, answer, so_far):
+    if pos == len(in_str):
+        answer.append("|".join(so_far))
         return
-    for j in range(i, len(array)):
-        array[i], array[j] = array[j], array[i]
-        printPermutations(array, i + 1)
-        array[i], array[j] = array[j], array[i]
 
-def generate_all_palindromes(a):
-	# res = find_all_palindromes(a, len(a))
-	# print(res)
-	printPermutations(list(a), 0)
-	
+    for i in range(pos+1, len(in_str)+1):
+        curr = in_str[pos:i]
+        if check_palindrome(curr, 0, len(curr)):
+            so_far.append(curr)
+            gap_helper(in_str, i, answer, so_far)
+            so_far.pop()
+
+def generate_all_palindromes(in_str):
+    answer = []
+    gap_helper(in_str, 0, answer, [])
+    return answer
 
 generate_all_palindromes("tacocat")
 # print(generate_all_palindromes("tacocat"))

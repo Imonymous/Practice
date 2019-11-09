@@ -1,0 +1,87 @@
+1
+    9
+    92
+19
+    2
+        1
+        16
+        168
+    21
+    216
+        8
+        80
+            201
+192
+    1
+    16
+        8
+        80
+            201
+    168
+        0
+            201
+
+    public static List<String> findIps(String digits) {
+        List<String> stack = new ArrayList<>();
+        List<String> res = new ArrayList<>();
+        dfs(digits, 0, stack, res);
+        return res;
+    }
+
+    private static void dfs(String digits, int pos, List<String> stack, List<String> res) {
+        if (stack.size() == 4) {
+            if (pos == digits.length()) {
+                String joined = String.join(".", stack);
+                res.add(joined);
+            }
+            return;
+        }
+
+        for (int i = 1; i <= 3 && pos + i <= digits.length(); ++i) {
+            String sub = digits.substring(pos, pos + i);
+            if (isValid(sub)) {
+                stack.add(sub);
+                dfs(digits, pos + i, stack, res);
+                stack.remove(stack.size() - 1);
+            } else {
+                break;
+            }
+        }
+    }
+
+    private static boolean isValid(String sub) {
+        if (sub.length() == 1) {
+            return true;
+        }
+        if (sub.length() > 3) {
+            return false;
+        }
+        if (sub.charAt(0) == '0') {
+            return false;
+        }
+
+        return Integer.parseInt(sub) <= 255;
+    }
+
+'''
+
+def get_ips(dots, prefix, output):
+
+    if dots == 0:
+        nums = ip.split(".")
+        for num in nums:
+            if int(num) not in range(256):
+                return
+
+        output.append(ip)
+
+    for i in range(3):
+        get_ips(dots-1, ip[0:i]+"."+ip[i:], output)
+
+def get_ips_main(s):
+    output = []
+
+    dots = 3
+
+    get_ips(dots, s, output)
+    

@@ -32,7 +32,7 @@ class BinaryTree():
 			nodeValueString = input().split(' ')
 			for val in nodeValueString:
 				self.nodeValues.append(int(val))
-		
+
 		self.rootIndex = int(input())
 		self.noOfEdges = int(input())
 		for i in range(self.noOfEdges):
@@ -69,24 +69,26 @@ def recursiveAdder(root):
 		if root.val == root.left_ptr.val and unival == root.val:
 			return count+1, unival
 		else:
-			return count, 0
+			return count, None
 	elif root.left_ptr == None and root.right_ptr != None:
 		count, unival = recursiveAdder(root.right_ptr)
 		if root.val == root.right_ptr.val and unival == root.val:
 			return count+1, unival
 		else:
-			return count, 0
+			return count, None
 	else:
 		left_count, left_unival = recursiveAdder(root.left_ptr)
 		right_count, right_unival = recursiveAdder(root.right_ptr)
 		if root.val == root.right_ptr.val and root.val == root.left_ptr.val and left_unival == right_unival and right_unival == root.val:
 			return left_count+right_count+1, left_unival
 		else:
-			return left_count+right_count, 0
+			return left_count+right_count, None
 
 def findSingleValueTrees(root):
-	final_count, unival = recursiveAdder(root)
-	return final_count
+    if root:
+    	final_count, unival = recursiveAdder(root)
+    	return final_count
+    return 0
 
 def main():
 	root = readBinaryTree()

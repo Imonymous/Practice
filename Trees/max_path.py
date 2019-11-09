@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 """
+Mock 3
+
 Given a non-empty binary tree, find the maximum path sum.
 
 For this problem, a path is defined as any sequence of nodes from some starting node to any node in the tree along the parent-child connections. The path must contain at least one node and does not need to go through the root.
@@ -61,8 +63,8 @@ def build_tree(arr, i):
 		return None
 
 	node = TreeNode()
-	if arr[i] is not None:	
-		node.val = arr[i] 
+	if arr[i] is not None:
+		node.val = arr[i]
 	else:
 		node.val = 0
 	node.left_ptr = build_tree(arr, 2*i+1)
@@ -72,62 +74,10 @@ def build_tree(arr, i):
 
 def main(arr):
 	root = build_tree(arr, 0)
-	
+
 	max_sum, xyz = post_order(root, 0)
 
 	print(max_sum)
 
 if __name__ == '__main__':
 	main([-10,9,20,None,None,15,7,None,None,None,None,3,-2,1,10])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

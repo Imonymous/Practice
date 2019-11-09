@@ -1,0 +1,115 @@
+'''
+/*
+Least Common Ancestor
+Given an n-ary tree, find the LCA of three different values.
+There are no repeated values in the tree
+node {
+    int val;
+    list<node> children;
+}
+                                4
+                             / / \ \
+                            2 16 7 8
+                           /\
+                         100 5
+                         / \
+                        121 1
+
+Nodes              LCA
+100, 5, 1           2
+100, 5, 121         2
+100, 5 ,2           4
+4, 121, 5           null
+100, 5, 2000        null
+*/
+
+
+class TreeNode():
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children
+
+def build_tree(arr, n, i):
+    if i >= len(arr):
+        return None
+
+    node = TreeNode()
+    if arr[i] is not None:
+        node.val = arr[i]
+    else:
+        node.val = 0
+
+    node.children = []
+    for child in range(1, n+1):
+        node.children.append(build_tree(arr, n, n*i+child))
+
+    return node
+
+def print_tree(root, count, n, l):
+    if len(root.children) == 0:
+        return
+
+    if root:
+        print(root.val)
+
+    for i in range(n):
+        count += 1
+        if root:
+            print_tree(root.children[i], count, n, l)
+
+# def findLCA(root, a, b, c):
+
+
+def main(arr, a, b, c):
+    root = build_tree(arr, 4, 0)
+
+    print_tree(root, 0, 4, len(arr))
+    print_tree
+    # ans = findLCA(root, a, b, c)
+
+    # print(ans)
+
+main([4,2,16,7,8,100,5,None,None,None,None,None,None,None,None,None,None,None,None,None,None,121,1,None,None], 0,0,0)
+
+
+
+node FindLCA(int a, int b, int c, const node root)
+
+'''
+
+def dfs(num, node, out):
+    if num in node.children:
+        return
+
+    out.append(node)
+    for child in node.children:
+        dfs(node.child, node, out)
+
+def findLCA(a,b,c,root):
+
+    a_par = []
+    b_par = []
+    c_par = []
+
+    dfs(a, root, a_par)
+    dfs(b, root, b_par)
+    dfs(c, root, c_par)
+
+    comm = min(len(a_par), len(b_par), len(c_par))
+
+    if a_par[comm] == b_par[comm] and b_par[comm] == c_par[comm] and comm != 0:
+        return a_par[comm]
+    else:
+        return None
+
+class Node():
+    def _init_(self, root, children):
+        self.root = root
+        self.children = children
+
+def main():
+
+    input_list = input()
+
+
+    findLCA =

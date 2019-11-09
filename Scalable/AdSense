@@ -1,0 +1,19 @@
+Google Adsense
+
+ads on google search
+Advertiser: Nike: shoes, running, sport shoes
+
+"running shoes"
+
+1. signup for google adsense
+2. put JS tag on any page where you want to show the ads.
+3. when a user loads the page, this JS tag will get executed by the browser
+4. JS will send request to Adsense
+5. URL for the page --> get content of the url.
+6. analyze the html and extract important keywords
+
+
+Training for marathon
+
+
+URL -> return HTML content
